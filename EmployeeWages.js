@@ -95,3 +95,23 @@ let count = 0;
 let totalHours = Array.from(empDailyWageMap.values()).reduce(findTotal,0);
 let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage>0).reduce(findTotal,0);
 console.log("Emp Wage with Arrow: "+ "Total Hours: "+totalHours+ " Total Wages: "+totalSalary);
+//Object Creation
+let totalEmpHr = 0;
+let totalWorkingDay = 0;
+let empDailyHrsAndWageArr = new Array();
+while(totalEmpHr <= MAX_HRS_IN_MONTH && totalWorkingDay < NUM_OF_WORKING_DAYS){
+    totalWorkingDay++;
+    let empCheck = Math.floor(Math.random() * 10)%3;
+    let empHrs = getWorkingHours(empCheck);
+    totalEmpHr += empHrs;
+    empDailyHrsAndWageArr.push(
+        {
+            dayNum:totalWorkingDay,
+            dailyHour:empHrs,
+            dailyWage:calculateDailyWage(empHrs),
+            toString(){
+                return '\nDay' + this.dayNum + '=> Working Hours is '+ this.dailyHour+' And Wage Earned = ' + this.dailyWage
+            },
+    });
+}
+console.log("Showing Daily Hours Worked and Wage Earned: "+ empDailyHrsAndWageArr);
